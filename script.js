@@ -18,7 +18,7 @@ const texts = {
     content:
       "El fénix es un ave mítica que simboliza la inmortalidad, la resurrección y la vida después de la muerte. Se dice que cuando el fénix siente que va a morir, construye un nido de ramas aromáticas y especias, se incendia y renace de sus cenizas.",
   },
-  lion: {
+  mision: {
     title: "Historia del León",
     content:
       "El león es un símbolo de fuerza, valentía y liderazgo. Ha sido representado en diversas culturas como el rey de los animales, apareciendo en banderas, escudos de armas y mitologías alrededor del mundo.",
@@ -181,10 +181,10 @@ document.querySelector("#marker-economia").addEventListener("markerFound", () =>
   // Restablecer escala al tamaño original del ave
   document.querySelector("#economia-model").setAttribute("scale", "0.6 1 1")
 })
-document.querySelector("#marker-lion").addEventListener("markerFound", () => {
-  showMarkerContent("marker-lion")
+document.querySelector("#marker-mision").addEventListener("markerFound", () => {
+  showMarkerContent("marker-mision")
   // Restablecer escala al tamaño original del león
-  document.querySelector("#lion-model").setAttribute("scale", "0.6 1 1")
+  document.querySelector("#mision-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-logo").addEventListener("markerFound", () => {
   showMarkerContent("marker-logo")
@@ -226,11 +226,11 @@ document.querySelector("#marker-veracidad").addEventListener("markerFound", () =
 
 // Detectar cuándo un marcador se pierde
 
-document.querySelector("#marker-phoenix").addEventListener("markerLost", () => {
-  hideMarkerContent("marker-phoenix")
+document.querySelector("#marker-economia").addEventListener("markerLost", () => {
+  hideMarkerContent("marker-economia")
 })
-document.querySelector("#marker-lion").addEventListener("markerLost", () => {
-  hideMarkerContent("marker-lion")
+document.querySelector("#marker-mision").addEventListener("markerLost", () => {
+  hideMarkerContent("marker-mision")
 })
 document.querySelector("#marker-honestidad").addEventListener("markerLost", () => {
   hideMarkerContent("marker-honestidad")
