@@ -201,12 +201,12 @@ document.querySelector("#marker-diligencia").addEventListener("markerFound", () 
   showMarkerContent("marker-diligencia")
   // Restablecer escala al tamaño original
   document.querySelector("#diligencia-model").setAttribute("scale", "1 1 1")
-}
+})
 document.querySelector("#marker-veracidad").addEventListener("markerFound", () => {
   showMarkerContent("marker-veracidad")
   // Restablecer escala al tamaño original
-  document.querySelector("#diligencia-model").setAttribute("scale", "1 1 1")
-}
+  document.querySelector("#veracidad-model").setAttribute("scale", "1 1 1")
+})
 
 
 
