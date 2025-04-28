@@ -8,7 +8,7 @@ const playBtn = document.getElementById("play-btn")
 const stopBtn = document.getElementById("stop-btn")
 const playText = document.getElementById("play-text")
 const loadingText = document.getElementById("loading-text")
-const textElement = document.getElementById("phoenix-text")
+const textElement = document.getElementById("valor-text")
 const titleElement = document.getElementById("title")
 const instructionMessage = document.getElementById("instruction-message")
 
