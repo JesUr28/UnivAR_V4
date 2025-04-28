@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Modelo 3D en AR</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Contenedor del modelo 3D -->
+        <div id="model-container">
+            <a-scene embedded arjs="detectionMode: mono_and_matrix; debugUIEnabled: false"
+                     vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true; alpha: true"
+                     gesture-detector>
+                <a-assets>
+                    <a-asset-item id="bird" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/economia.glb"></a-asset-item>
+                    <a-asset-item id="lion" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/mision.glb"></a-asset-item>
+                    <a-asset-item id="honestidad" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/honestidad.glb"></a-asset-item>
+                    <a-asset-item id="respeto" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/respeto.glb"></a-asset-item>  <!-- prudencia -->
+                    <a-asset-item id="justicia" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/justicia.glb"></a-asset-item>
+                    <a-asset-item id="compromiso" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/compromiso.glb"></a-asset-item>
+                    <a-asset-item id="diligencia" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/diligencia.glb"></a-asset-item>
+                    <a-asset-item id="veracidad" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/veracidad.glb"></a-asset-item>
+                    <a-asset-item id="logo" src="https://cdn.glitch.global/f24dfbcf-5d5a-489d-b6c0-b547e6c91644/Logo.glb"></a-asset-item>
+                </a-assets>
+
+
+               
+                
+                <!-- Marcador para el Fénix (HIRO) -->
+                <a-marker type="pattern" url="markers/pattern-Flecha.patt" id="marker-phoenix">
+                    <a-entity id="bird-model" gltf-model="#bird" scale="0.6 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+                
+                <!-- Marcador Personalizado para el León -->
+                <a-marker type="pattern" url="markers/pattern-A.patt" id="marker-lion">
+                    <a-entity id="lion-model" gltf-model="#lion" scale="0.6 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+
+                  <!-- Marcador para el logo -->
+                <a-marker type="pattern" url="markers/pattern-S.patt" id="marker-logo">
+                    <a-entity id="logo-model" gltf-model="#logo" scale="0.6 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+                
+                <!-- Marcador Personalizado para Honestidad -->
+                <a-marker type="pattern" url="markers/pattern-H.patt" id="marker-honestidad">
+                    <a-entity id="honestidad-model" gltf-model="#honestidad" scale="1 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+                
+                <!-- Marcador Personalizado para respeto -->
+                <a-marker type="pattern" url="markers/pattern-P.patt" id="marker-respeto">
+                    <a-entity id="respeto-model" gltf-model="#respeto" scale="1 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+                
+                <!-- Marcador Personalizado para Justicia -->
+                <a-marker type="pattern" url="markers/pattern-J.patt" id="marker-justicia">
+                    <a-entity id="justicia-model" gltf-model="#justicia" scale="1 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+
+                <!-- Marcador Personalizado para compromiso -->
+                <a-marker type="pattern" url="markers/pattern-R.patt" id="marker-compromiso">
+                    <a-entity id="compromiso-model" gltf-model="#compromiso" scale="1 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+                
+                <!-- Marcador Personalizado para diligencia -->
+                <a-marker type="pattern" url="markers/pattern-L.patt" id="marker-diligencia">
+                    <a-entity id="diligencia-model" gltf-model="#diligencia" scale="1 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+
+                <!-- Marcador Personalizado para veracidad -->
+                <a-marker type="pattern" url="markers/pattern-F.patt" id="marker-veracidad">
+                    <a-entity id="veracidad-model" gltf-model="#veracidad" scale="1 1 1"
+                              position="0 0 0" animation-mixer="loop: repeat"
+                              class="clickable" gesture-handler>
+                    </a-entity>
+                </a-marker>
+                
+                <a-entity camera></a-entity>
+            </a-scene>
+        </div>
+        
+        <!-- Contenedor del texto -->
+        <div id="info-box">
+            <button id="play-btn" class="speak-button hidden">
+                <span id="play-text">▶️ Reproducir</span>
+                <span id="loading-text" class="hidden">
+                    <span class="loading-spinner"></span> Cargando...
+                </span>
+            </button>
+            <button id="stop-btn" class="speak-button hidden">⏹️ Detener</button>
+            <div id="instruction-message" class="instruction">
+                <h2>Instrucciones</h2>
+                <p>Escanea uno de los marcadores para ver el modelo 3D y su información.</p>
+            </div>
+            <h2 id="title" class="hidden"></h2>
+            <p id="phoenix-text" class="hidden"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
