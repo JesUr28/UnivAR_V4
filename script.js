@@ -13,7 +13,7 @@ const titleElement = document.getElementById("title")
 const instructionMessage = document.getElementById("instruction-message")
 
 const texts = {
-  phoenix: {
+  economia: {
     title: "Historia del Fénix",
     content:
       "El fénix es un ave mítica que simboliza la inmortalidad, la resurrección y la vida después de la muerte. Se dice que cuando el fénix siente que va a morir, construye un nido de ramas aromáticas y especias, se incendia y renace de sus cenizas.",
@@ -176,10 +176,10 @@ function hideMarkerContent(markerId) {
 }
 
 // Detectar cuándo un marcador es visible
-document.querySelector("#marker-phoenix").addEventListener("markerFound", () => {
-  showMarkerContent("marker-phoenix")
+document.querySelector("#marker-economia").addEventListener("markerFound", () => {
+  showMarkerContent("marker-economia")
   // Restablecer escala al tamaño original del ave
-  document.querySelector("#bird-model").setAttribute("scale", "0.6 1 1")
+  document.querySelector("#economia-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-lion").addEventListener("markerFound", () => {
   showMarkerContent("marker-lion")
