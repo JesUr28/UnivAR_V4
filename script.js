@@ -218,6 +218,9 @@ document.querySelector("#marker-economia").addEventListener("markerLost", () => 
 document.querySelector("#marker-mision").addEventListener("markerLost", () => {
   hideMarkerContent("marker-mision")
 })
+document.querySelector("#marker-logo").addEventListener("markerLost", () => {
+  hideMarkerContent("marker-logo")
+})
 document.querySelector("#marker-honestidad").addEventListener("markerLost", () => {
   hideMarkerContent("marker-honestidad")
 })
@@ -236,9 +239,7 @@ document.querySelector("#marker-diligencia").addEventListener("markerLost", () =
 document.querySelector("#marker-veracidad").addEventListener("markerLost", () => {
   hideMarkerContent("marker-veracidad")
 })
-document.querySelector("#marker-logo").addEventListener("markerLost", () => {
-  hideMarkerContent("marker-logo")
-})
+
 
 // Función para iniciar la reproducción
 playBtn.addEventListener("click", () => {
