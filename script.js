@@ -11,7 +11,6 @@ const loadingText = document.getElementById("loading-text")
 const textElement = document.getElementById("valor-text")
 const titleElement = document.getElementById("title")
 const instructionMessage = document.getElementById("instruction-message")
-const infoBox = document.getElementById("info-box")
 
 const texts = {
   economia: {
@@ -166,17 +165,17 @@ function hideMarkerContent(markerId) {
 document.querySelector("#marker-economia").addEventListener("markerFound", () => {
   showMarkerContent("marker-economia")
   // Restablecer escala al tamaño original del ave
-  document.querySelector("#economia-model").setAttribute("scale", "0.5 1 1")
+  document.querySelector("#economia-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-mision").addEventListener("markerFound", () => {
   showMarkerContent("marker-mision")
   // Restablecer escala al tamaño original del león
-  document.querySelector("#mision-model").setAttribute("scale", "0.5 1 1")
+  document.querySelector("#mision-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-logo").addEventListener("markerFound", () => {
   showMarkerContent("marker-logo")
   // Restablecer escala al tamaño original del ave
-  document.querySelector("#logo-model").setAttribute("scale", "0.5 1 1")
+  document.querySelector("#logo-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-honestidad").addEventListener("markerFound", () => {
   showMarkerContent("marker-honestidad")
@@ -277,67 +276,14 @@ stopBtn.addEventListener("click", () => {
   stopSpeaking()
 })
 
-// Prevenir gestos de zoom y desplazamiento no deseados
+// Pequeña mejora para prevenir zoom en dispositivos iOS
 document.addEventListener("gesturestart", (e) => {
   e.preventDefault()
 })
 
-document.addEventListener(
-  "touchmove",
-  (e) => {
-    // Permitir desplazamiento vertical en el contenedor de texto
-    if (e.target.closest("#info-box")) {
-      const touchY = e.touches[0].clientY
-      const touchX = e.touches[0].clientX
-      const prevTouchY = e.target._prevTouchY || touchY
-      const prevTouchX = e.target._prevTouchX || touchX
-
-      // Si el desplazamiento es más horizontal que vertical, prevenirlo
-      if (Math.abs(touchX - prevTouchX) > Math.abs(touchY - prevTouchY)) {
-        e.preventDefault()
-      }
-
-      // Guardar la posición actual para la próxima comparación
-      e.target._prevTouchY = touchY
-      e.target._prevTouchX = touchX
-    } else {
-      // Fuera del contenedor de texto, prevenir todos los desplazamientos
-      e.preventDefault()
-    }
-  },
-  { passive: false },
-)
-
-// Asegurarse de que la cámara AR ocupe todo el ancho de la pantalla y tenga buena calidad
-window.addEventListener("load", () => {
-  // Intentar mejorar la calidad de la cámara AR
-  setTimeout(() => {
-    const canvas = document.querySelector(".a-canvas")
-    if (canvas) {
-      canvas.style.width = "100%"
-      canvas.style.height = "100%"
-      canvas.style.left = "0"
-      canvas.style.top = "0"
-      canvas.style.position = "absolute"
-      canvas.style.objectFit = "cover"
-
-      // Intentar mejorar la calidad de la imagen
-      const scene = document.querySelector("a-scene")
-      if (scene) {
-        // Configurar el renderizador para mejor calidad
-        const renderer = scene.renderer
-        if (renderer) {
-          renderer.setPixelRatio(window.devicePixelRatio)
-          renderer.setSize(window.innerWidth, window.innerHeight)
-          renderer.gammaOutput = true
-          renderer.gammaFactor = 2.2
-          renderer.shadowMap.enabled = true
-        }
-      }
-    }
-  }, 1000)
-
-  // Precarga de voces para mejorar el tiempo de respuesta
+// Precarga de voces para mejorar el tiempo de respuesta
+window.addEventListener("DOMContentLoaded", () => {
+  // Intentar precargar las voces
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = () => {
       speechSynthesis.getVoices()
@@ -375,23 +321,3 @@ window.addEventListener("resize", checkDeviceAndShowWarning)
 document.getElementById("back-btn").addEventListener("click", () => {
   window.history.back()
 })
-
-document.getElementById("continue-btn").addEventListener("click", () => {
-  document.getElementById("desktop-warning").style.display = "none"
-  document.getElementById("container").style.display = "flex"
-})
-
-document.getElementById("close-btn").addEventListener("click", () => {
-  window.close()
-  // Si window.close() no funciona (por políticas del navegador), ocultar el mensaje
-  document.getElementById("desktop-warning").style.display = "none"
-})
-
-// Ajustar la resolución de la cámara cuando cambia el tamaño de la ventana
-window.addEventListener("resize", () => {
-  const scene = document.querySelector("a-scene")
-  if (scene && scene.renderer) {
-    scene.renderer.setSize(window.innerWidth, window.innerHeight)
-  }
-})
-
