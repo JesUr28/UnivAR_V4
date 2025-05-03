@@ -165,17 +165,17 @@ function hideMarkerContent(markerId) {
 document.querySelector("#marker-economia").addEventListener("markerFound", () => {
   showMarkerContent("marker-economia")
   // Restablecer escala al tamaño original del ave
-  document.querySelector("#economia-model").setAttribute("scale", "0.6 1 1")
+  document.querySelector("#economia-model").setAttribute("scale", "0.5 1 1")
 })
 document.querySelector("#marker-mision").addEventListener("markerFound", () => {
   showMarkerContent("marker-mision")
   // Restablecer escala al tamaño original del león
-  document.querySelector("#mision-model").setAttribute("scale", "0.6 1 1")
+  document.querySelector("#mision-model").setAttribute("scale", "0.5 1 1")
 })
 document.querySelector("#marker-logo").addEventListener("markerFound", () => {
   showMarkerContent("marker-logo")
   // Restablecer escala al tamaño original del ave
-  document.querySelector("#logo-model").setAttribute("scale", "0.6 1 1")
+  document.querySelector("#logo-model").setAttribute("scale", "0.5 1 1")
 })
 document.querySelector("#marker-honestidad").addEventListener("markerFound", () => {
   showMarkerContent("marker-honestidad")
@@ -320,4 +320,15 @@ window.addEventListener("resize", checkDeviceAndShowWarning)
 // Configurar botones de la advertencia
 document.getElementById("back-btn").addEventListener("click", () => {
   window.history.back()
+})
+
+document.getElementById("continue-btn").addEventListener("click", () => {
+  document.getElementById("desktop-warning").style.display = "none"
+  document.getElementById("container").style.display = "flex"
+})
+
+document.getElementById("close-btn").addEventListener("click", () => {
+  window.close()
+  // Si window.close() no funciona (por políticas del navegador), ocultar el mensaje
+  document.getElementById("desktop-warning").style.display = "none"
 })
