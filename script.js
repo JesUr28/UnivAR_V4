@@ -308,9 +308,30 @@ document.addEventListener(
   { passive: false },
 )
 
-// Precarga de voces para mejorar el tiempo de respuesta
-window.addEventListener("DOMContentLoaded", () => {
-  // Intentar precargar las voces
+// Asegurarse de que la cámara AR ocupe todo el ancho de la pantalla
+window.addEventListener("load", () => {
+  // Intentar corregir el tamaño de la cámara AR
+  setTimeout(() => {
+    const canvas = document.querySelector(".a-canvas")
+    if (canvas) {
+      canvas.style.width = "100%"
+      canvas.style.height = "100%"
+      canvas.style.left = "0"
+      canvas.style.right = "0"
+      canvas.style.position = "absolute"
+    }
+
+    const scene = document.querySelector("a-scene")
+    if (scene) {
+      scene.style.width = "100%"
+      scene.style.height = "100%"
+      scene.style.left = "0"
+      scene.style.right = "0"
+      scene.style.position = "absolute"
+    }
+  }, 1000)
+
+  // Precarga de voces para mejorar el tiempo de respuesta
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = () => {
       speechSynthesis.getVoices()
