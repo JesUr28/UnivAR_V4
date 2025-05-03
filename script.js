@@ -165,7 +165,7 @@ function hideMarkerContent(markerId) {
 document.querySelector("#marker-economia").addEventListener("markerFound", () => {
   showMarkerContent("marker-economia")
   // Restablecer escala al tamaño original del ave
-  document.querySelector("#economia-model").setAttribute("scale", "0.6 1 1")
+  document.querySelector("#economia-model").setAttribute("scale", "1 1 1")
 })
 document.querySelector("#marker-mision").addEventListener("markerFound", () => {
   showMarkerContent("marker-mision")
