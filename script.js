@@ -164,52 +164,43 @@ function hideMarkerContent(markerId) {
 // Detectar cuándo un marcador es visible
 document.querySelector("#marker-economia").addEventListener("markerFound", () => {
   showMarkerContent("marker-economia")
-  // Restablecer escala al tamaño original del ave
+  // Restablecer escala al tamaño original 
   document.querySelector("#economia-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-mision").addEventListener("markerFound", () => {
   showMarkerContent("marker-mision")
-  // Restablecer escala al tamaño original del león
   document.querySelector("#mision-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-logo").addEventListener("markerFound", () => {
   showMarkerContent("marker-logo")
-  // Restablecer escala al tamaño original del ave
   document.querySelector("#logo-model").setAttribute("scale", "0.6 1 1")
 })
 document.querySelector("#marker-honestidad").addEventListener("markerFound", () => {
   showMarkerContent("marker-honestidad")
-  // Restablecer escala al tamaño original
   document.querySelector("#honestidad-model").setAttribute("scale", "1 1 1")
 })
 document.querySelector("#marker-respeto").addEventListener("markerFound", () => {
   showMarkerContent("marker-respeto")
-  // Restablecer escala al tamaño original
   document.querySelector("#respeto-model").setAttribute("scale", "1 1 1")
 })
 document.querySelector("#marker-justicia").addEventListener("markerFound", () => {
   showMarkerContent("marker-justicia")
-  // Restablecer escala al tamaño original
   document.querySelector("#justicia-model").setAttribute("scale", "1 1 1")
 })
 document.querySelector("#marker-compromiso").addEventListener("markerFound", () => {
   showMarkerContent("marker-compromiso")
-  // Restablecer escala al tamaño original
   document.querySelector("#compromiso-model").setAttribute("scale", "1 1 1")
 })
 document.querySelector("#marker-diligencia").addEventListener("markerFound", () => {
   showMarkerContent("marker-diligencia")
-  // Restablecer escala al tamaño original
   document.querySelector("#diligencia-model").setAttribute("scale", "1 1 1")
 })
 document.querySelector("#marker-veracidad").addEventListener("markerFound", () => {
   showMarkerContent("marker-veracidad")
-  // Restablecer escala al tamaño original
   document.querySelector("#veracidad-model").setAttribute("scale", "1 1 1")
 })
 
 // Detectar cuándo un marcador se pierde
-
 document.querySelector("#marker-economia").addEventListener("markerLost", () => {
   hideMarkerContent("marker-economia")
 })
@@ -251,7 +242,7 @@ playBtn.addEventListener("click", () => {
 
     const loadingTimeout = setTimeout(() => {
       hideLoadingState()
-    }, 3000) // Máximo 3 segundos esperando que empiece a hablar
+    }, 5000) // Máximo 3 segundos esperando que empiece a hablar
 
     utterance.onstart = () => {
       // Cancelar el timeout ya que la reproducción ha comenzado
@@ -276,14 +267,13 @@ stopBtn.addEventListener("click", () => {
   stopSpeaking()
 })
 
-// Pequeña mejora para prevenir zoom en dispositivos iOS
+// prevenir zoom en dispositivos iOS
 document.addEventListener("gesturestart", (e) => {
   e.preventDefault()
 })
 
 // Precarga de voces para mejorar el tiempo de respuesta
 window.addEventListener("DOMContentLoaded", () => {
-  // Intentar precargar las voces
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = () => {
       speechSynthesis.getVoices()
