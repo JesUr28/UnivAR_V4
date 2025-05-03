@@ -20,10 +20,21 @@
 }
 
 /* Asegurarse de que la escena AR ocupe todo el ancho */
+a-scene {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
 .a-canvas {
   width: 100% !important;
   height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
   left: 0 !important;
+  object-fit: cover !important;
 }
 
 /* Parte inferior: contiene el texto */
@@ -209,12 +220,5 @@ body {
   overflow: hidden;
   position: fixed;
   overscroll-behavior: none;
-}
-
-/* Asegurarse de que la escena AR ocupe todo el ancho */
-a-scene {
-  width: 100% !important;
-  height: 100% !important;
-  left: 0 !important;
 }
 
