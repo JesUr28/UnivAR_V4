@@ -48,13 +48,13 @@ const texts = {
     content:
       "Asumir con responsabilidad y entrega las tareas y metas institucionales, aportando al cumplimiento de la misión y visión universitaria. El compromiso en la Universidad Popular del Cesar refleja la disposición de sus miembros para contribuir activamente con el desarrollo personal, profesional y social desde su rol en la comunidad educativa.",
   },
-  
+
   diligencia: {
     title: "Valor Intitucional: DILIGENCIA",
     content:
       "Cumplir con esmero, responsabilidad y eficiencia las funciones y tareas asignadas, procurando siempre la excelencia. En la Universidad Popular del Cesar, la diligencia impulsa una cultura del trabajo bien hecho, del esfuerzo constante y del compromiso con la mejora continua en los procesos académicos y administrativos.",
   },
-  
+
   veracidad: {
     title: "Valor Intitucional: VERACIDAD",
     content:
@@ -208,8 +208,6 @@ document.querySelector("#marker-veracidad").addEventListener("markerFound", () =
   document.querySelector("#veracidad-model").setAttribute("scale", "1 1 1")
 })
 
-
-
 // Detectar cuándo un marcador se pierde
 
 document.querySelector("#marker-economia").addEventListener("markerLost", () => {
@@ -240,7 +238,6 @@ document.querySelector("#marker-veracidad").addEventListener("markerLost", () =>
   hideMarkerContent("marker-veracidad")
 })
 
-
 // Función para iniciar la reproducción
 playBtn.addEventListener("click", () => {
   if (textElement.innerText && !isLoading) {
@@ -252,11 +249,10 @@ playBtn.addEventListener("click", () => {
     utterance.rate = 1.0
     utterance.pitch = 1.0
 
-     const loadingTimeout = setTimeout(() => {
+    const loadingTimeout = setTimeout(() => {
       hideLoadingState()
     }, 3000) // Máximo 3 segundos esperando que empiece a hablar
 
-    
     utterance.onstart = () => {
       // Cancelar el timeout ya que la reproducción ha comenzado
       clearTimeout(loadingTimeout)
@@ -293,4 +289,41 @@ window.addEventListener("DOMContentLoaded", () => {
       speechSynthesis.getVoices()
     }
   }
+})
+
+// Detección de dispositivo móvil y mostrar advertencia en pantallas grandes
+function isMobileDevice() {
+  return (
+    window.innerWidth <= 768 ||
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  )
+}
+
+function checkDeviceAndShowWarning() {
+  const desktopWarning = document.getElementById("desktop-warning")
+
+  if (!isMobileDevice()) {
+    desktopWarning.style.display = "flex"
+  } else {
+    desktopWarning.style.display = "none"
+  }
+}
+
+// Verificar al cargar la página y cuando cambie el tamaño de la ventana
+window.addEventListener("load", checkDeviceAndShowWarning)
+window.addEventListener("resize", checkDeviceAndShowWarning)
+
+// Configurar botones de la advertencia
+document.getElementById("back-btn").addEventListener("click", () => {
+  window.history.back()
+})
+
+document.getElementById("continue-btn").addEventListener("click", () => {
+  document.getElementById("desktop-warning").style.display = "none"
+})
+
+document.getElementById("close-btn").addEventListener("click", () => {
+  window.close()
+  // Si window.close() no funciona (por políticas del navegador), ocultar el mensaje
+  document.getElementById("desktop-warning").style.display = "none"
 })
