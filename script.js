@@ -175,7 +175,7 @@ document.querySelector("#marker-mision").addEventListener("markerFound", () => {
 document.querySelector("#marker-logo").addEventListener("markerFound", () => {
   showMarkerContent("marker-logo")
   // Restablecer escala al tamaño original del ave
-  document.querySelector("#logo-model").setAttribute("scale", "0.6 1 1")
+  document.querySelector("#logo-model").setAttribute("scale", "1 1 1")
 })
 document.querySelector("#marker-honestidad").addEventListener("markerFound", () => {
   showMarkerContent("marker-honestidad")
