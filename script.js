@@ -301,11 +301,15 @@ function isMobileDevice() {
 
 function checkDeviceAndShowWarning() {
   const desktopWarning = document.getElementById("desktop-warning")
+  const container = document.getElementById("container")
 
   if (!isMobileDevice()) {
     desktopWarning.style.display = "flex"
+    // Ocultar completamente el contenedor principal para que no se vea la cámara
+    container.style.display = "none"
   } else {
     desktopWarning.style.display = "none"
+    container.style.display = "flex"
   }
 }
 
@@ -320,6 +324,7 @@ document.getElementById("back-btn").addEventListener("click", () => {
 
 document.getElementById("continue-btn").addEventListener("click", () => {
   document.getElementById("desktop-warning").style.display = "none"
+  document.getElementById("container").style.display = "flex"
 })
 
 document.getElementById("close-btn").addEventListener("click", () => {
@@ -327,3 +332,4 @@ document.getElementById("close-btn").addEventListener("click", () => {
   // Si window.close() no funciona (por políticas del navegador), ocultar el mensaje
   document.getElementById("desktop-warning").style.display = "none"
 })
+
