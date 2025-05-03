@@ -5,6 +5,10 @@
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  width: 100%;
+  position: fixed; /* Fijar el contenedor para evitar desplazamientos */
+  top: 0;
+  left: 0;
 }
 
 /* Parte superior: contiene el modelo 3D */
@@ -21,12 +25,15 @@
   padding: 20px;
   padding-bottom: 120px;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevenir scroll horizontal */
   font-size: 16px;
   text-align: justify;
   border-top: 2px solid white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  overscroll-behavior: contain; /* Prevenir overscroll */
 }
 
 #info-box h2 {
@@ -179,5 +186,17 @@
 }
 
 #desktop-warning button.close-btn:hover {
-  background-color: #d42f2f;
+  background-color: #d32f2f;
+}
+
+/* Estilos para prevenir el overscroll en toda la página */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  overscroll-behavior: none;
 }
