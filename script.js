@@ -11,6 +11,7 @@ const loadingText = document.getElementById("loading-text")
 const textElement = document.getElementById("valor-text")
 const titleElement = document.getElementById("title")
 const instructionMessage = document.getElementById("instruction-message")
+const infoBox = document.getElementById("info-box")
 
 const texts = {
   economia: {
@@ -276,10 +277,36 @@ stopBtn.addEventListener("click", () => {
   stopSpeaking()
 })
 
-// Pequeña mejora para prevenir zoom en dispositivos iOS
+// Prevenir gestos de zoom y desplazamiento no deseados
 document.addEventListener("gesturestart", (e) => {
   e.preventDefault()
 })
+
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    // Permitir desplazamiento vertical en el contenedor de texto
+    if (e.target.closest("#info-box")) {
+      const touchY = e.touches[0].clientY
+      const touchX = e.touches[0].clientX
+      const prevTouchY = e.target._prevTouchY || touchY
+      const prevTouchX = e.target._prevTouchX || touchX
+
+      // Si el desplazamiento es más horizontal que vertical, prevenirlo
+      if (Math.abs(touchX - prevTouchX) > Math.abs(touchY - prevTouchY)) {
+        e.preventDefault()
+      }
+
+      // Guardar la posición actual para la próxima comparación
+      e.target._prevTouchY = touchY
+      e.target._prevTouchX = touchX
+    } else {
+      // Fuera del contenedor de texto, prevenir todos los desplazamientos
+      e.preventDefault()
+    }
+  },
+  { passive: false },
+)
 
 // Precarga de voces para mejorar el tiempo de respuesta
 window.addEventListener("DOMContentLoaded", () => {
@@ -332,3 +359,4 @@ document.getElementById("close-btn").addEventListener("click", () => {
   // Si window.close() no funciona (por políticas del navegador), ocultar el mensaje
   document.getElementById("desktop-warning").style.display = "none"
 })
+
