@@ -128,5 +128,56 @@
   justify-content: center;
 }
 
+/* Estilos para el mensaje de pantalla grande */
+#desktop-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  display: none;
+}
 
+#desktop-warning h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #2196f3;
+}
 
+#desktop-warning p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+#desktop-warning button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+}
+
+#desktop-warning button:hover {
+  background-color: #45a049;
+}
+
+#desktop-warning button.close-btn {
+  background-color: #f44336;
+}
+
+#desktop-warning button.close-btn:hover {
+  background-color: #d32f2f;
+}
