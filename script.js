@@ -308,26 +308,32 @@ document.addEventListener(
   { passive: false },
 )
 
-// Asegurarse de que la cámara AR ocupe todo el ancho de la pantalla
+// Asegurarse de que la cámara AR ocupe todo el ancho de la pantalla y tenga buena calidad
 window.addEventListener("load", () => {
-  // Intentar corregir el tamaño de la cámara AR
+  // Intentar mejorar la calidad de la cámara AR
   setTimeout(() => {
     const canvas = document.querySelector(".a-canvas")
     if (canvas) {
       canvas.style.width = "100%"
       canvas.style.height = "100%"
       canvas.style.left = "0"
-      canvas.style.right = "0"
+      canvas.style.top = "0"
       canvas.style.position = "absolute"
-    }
+      canvas.style.objectFit = "cover"
 
-    const scene = document.querySelector("a-scene")
-    if (scene) {
-      scene.style.width = "100%"
-      scene.style.height = "100%"
-      scene.style.left = "0"
-      scene.style.right = "0"
-      scene.style.position = "absolute"
+      // Intentar mejorar la calidad de la imagen
+      const scene = document.querySelector("a-scene")
+      if (scene) {
+        // Configurar el renderizador para mejor calidad
+        const renderer = scene.renderer
+        if (renderer) {
+          renderer.setPixelRatio(window.devicePixelRatio)
+          renderer.setSize(window.innerWidth, window.innerHeight)
+          renderer.gammaOutput = true
+          renderer.gammaFactor = 2.2
+          renderer.shadowMap.enabled = true
+        }
+      }
     }
   }, 1000)
 
@@ -379,5 +385,13 @@ document.getElementById("close-btn").addEventListener("click", () => {
   window.close()
   // Si window.close() no funciona (por políticas del navegador), ocultar el mensaje
   document.getElementById("desktop-warning").style.display = "none"
+})
+
+// Ajustar la resolución de la cámara cuando cambia el tamaño de la ventana
+window.addEventListener("resize", () => {
+  const scene = document.querySelector("a-scene")
+  if (scene && scene.renderer) {
+    scene.renderer.setSize(window.innerWidth, window.innerHeight)
+  }
 })
 
